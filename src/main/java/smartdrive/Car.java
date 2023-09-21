@@ -4,12 +4,12 @@ public class Car {
   
   private int id;
   private String type;
-  private double balance;
+  private double fuelLevel;
 
-  public Car(int id, String type, double balance){
+  public Car(int id, String type, double fuelLevel){
     setId(id);
     setType(type);
-    setBalance(balance);
+    setFuelLevel(fuelLevel);
   }
 
   public int getId() {
@@ -28,12 +28,12 @@ public class Car {
     this.type = type;
   }
 
-  public double getBalance() {
-    return this.balance;
+  public double getFuelLevel() {
+    return this.fuelLevel;
   }
 
-  public void setBalance(double balance) {
-    this.balance = balance;
+  public void setFuelLevel(double fuelLevel) {
+    this.fuelLevel = fuelLevel;
   }
 
 
