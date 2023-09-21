@@ -42,12 +42,12 @@ public class TelemetrySource {
     return vehicleOwner;
   }
 
-  public static Car getCar(int accountId){
+  public static Car getCar(int carId){
     String sql = "select * from cars where id = ?";
     Car car = null;
     try (Connection connection = connect();
         PreparedStatement statement = connection.prepareStatement(sql)) {
-      statement.setInt(1, accountId);
+      statement.setInt(1, carId);
       try (ResultSet resultSet = statement.executeQuery()) {
         car = new Car(
             resultSet.getInt("id"),
@@ -62,11 +62,21 @@ public class TelemetrySource {
     return car;
   }
 
-  public static void main(String[] args) {
-    VehicleOwner vehicleOwner1 = getVehicleOwner("twest8o@friendfeed.com");
-    System.out.println(vehicleOwner1.getEmail());
+  public static void updateCarFuelLevel(int carId, double fuelLevel){
+    String sql = "update car set fuellevel = ? where id = ?";
+    try(
+      Connection connection = connect();
+      PreparedStatement statement = connection.prepareStatement(sql);
+    ){
+      statement.setDouble(1, fuelLevel);
+      statement.setInt(2, carId);
 
-    Car car1 = getCar(10385);
-    System.out.println(car1.getFuelLevel());
+      statement.executeUpdate();
+
+    }catch(SQLException e){
+      e.printStackTrace();
+    }
   }
+
+
 }

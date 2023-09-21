@@ -6,7 +6,7 @@ public class VehicleOwner {
   private String name;
   private String email;
   private String password;
-  private int accountId;
+  private int carId;
   private boolean authenticated;
 
   public boolean isAuthenticated() {
@@ -17,12 +17,12 @@ public class VehicleOwner {
     this.authenticated = authenticated;
   }
 
-  public VehicleOwner(int id, String name, String email, String password, int accountId){
+  public VehicleOwner(int id, String name, String email, String password, int carId){
     setId(id);
     setName(name);
     setEmail(email);
     setPassword(password);
-    setAccountId(accountId);
+    setCarId(carId);
     setAuthenticated(false);
   }
 
@@ -58,12 +58,12 @@ public class VehicleOwner {
     this.password = password;
   }
 
-  public int getAccountId() {
-    return this.accountId;
+  public int getCarId() {
+    return this.carId;
   }
 
-  public void setAccountId(int accountId) {
-    this.accountId = accountId;
+  public void setCarId(int carId) {
+    this.carId = carId;
   }
 
 }

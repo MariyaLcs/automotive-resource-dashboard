@@ -3,12 +3,12 @@ package smartdrive;
 import smartdrive.exceptions.AmountException;
 
 public class Car {
-  
+
   private int id;
   private String type;
   private double fuelLevel;
 
-  public Car(int id, String type, double fuelLevel){
+  public Car(int id, String type, double fuelLevel) {
     setId(id);
     setType(type);
     setFuelLevel(fuelLevel);
@@ -38,14 +38,25 @@ public class Car {
     this.fuelLevel = fuelLevel;
   }
 
-  public void refuelVehicle(double amount) throws AmountException{
-    if(amount <1){
+  public void refuelVehicle(double amount) throws AmountException {
+    if (amount < 1) {
       throw new AmountException("Ensure a minimum of 1.00 units is allocated.");
-    }
-    else{
+    } else {
       double newFuelLevel = fuelLevel + amount;
       setFuelLevel(newFuelLevel);
+      TelemetrySource.updateCarFuelLevel(id, newFuelLevel);
     }
   }
-  public void fuelConsumptionLevel(double amount){}
+
+  public void fuelConsumptionLevel(double amount) throws AmountException {
+    if (amount < 0) {
+      throw new AmountException("Not supported, the amount must be greater than 0");
+    } else if (amount > getFuelLevel()) {
+      throw new AmountException("Insufficient resources for this action.");
+    } else {
+      double newFuelLevel = fuelLevel - amount;
+      setFuelLevel(newFuelLevel);
+      TelemetrySource.updateCarFuelLevel(id, newFuelLevel);
+    }
+  }
 }

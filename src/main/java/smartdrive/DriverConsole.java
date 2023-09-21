@@ -11,13 +11,14 @@ public class DriverConsole {
   private Scanner scanner;
 
   public static void main(String[] args) {
+    //for test: ojamblinbx@ycombinator.com BsSaO4%PuJ1
     System.out.println("Welcome on board 🏁");
 
     DriverConsole driverConsole = new DriverConsole();
     driverConsole.scanner = new Scanner(System.in);
     VehicleOwner vehicleOwner = driverConsole.driverAuthentication();
     if (vehicleOwner != null) {
-      Car car = TelemetrySource.getCar(vehicleOwner.getAccountId());
+      Car car = TelemetrySource.getCar(vehicleOwner.getCarId());
       driverConsole.showControlPanel(vehicleOwner, car);
     }
 
@@ -71,7 +72,13 @@ public class DriverConsole {
         case 2:
           System.out.println("Set your preferred fuel consumption");
           amount = scanner.nextDouble();
-          car.fuelConsumptionLevel(amount);
+          try{
+            car.fuelConsumptionLevel(amount);
+          }catch(AmountException e){
+            System.out.println(e.getMessage());
+            System.out.println("Please try again");
+          }
+          
           break;
 
         case 3:
