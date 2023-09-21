@@ -7,6 +7,15 @@ public class VehicleOwner {
   private String email;
   private String password;
   private int accountId;
+  private boolean authenticated;
+
+  public boolean isAuthenticated() {
+    return this.authenticated;
+  }
+
+  public void setAuthenticated(boolean authenticated) {
+    this.authenticated = authenticated;
+  }
 
   public VehicleOwner(int id, String name, String email, String password, int accountId){
     setId(id);
@@ -14,6 +23,7 @@ public class VehicleOwner {
     setEmail(email);
     setPassword(password);
     setAccountId(accountId);
+    setAuthenticated(false);
   }
 
   public int getId() {

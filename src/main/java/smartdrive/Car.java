@@ -36,5 +36,6 @@ public class Car {
     this.fuelLevel = fuelLevel;
   }
 
-
+  public void refuelVehicle(double amount){}
+  public void fuelConsumptionLevel(double amount){}
 }
