@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 import javax.security.auth.login.LoginException;
 
+import smartdrive.exceptions.AmountException;
+
 public class DriverConsole {
 
   private Scanner scanner;
@@ -58,7 +60,12 @@ public class DriverConsole {
         case 1:
           System.out.println("How much is added to the fuel tank?");
           amount = scanner.nextDouble();
-          car.refuelVehicle(amount);
+          try {
+            car.refuelVehicle(amount);
+          }catch(AmountException e){
+            System.out.println(e.getMessage());
+            System.out.println("Please try again");
+          }
           break;
 
         case 2:

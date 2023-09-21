@@ -1,5 +1,7 @@
 package smartdrive;
 
+import smartdrive.exceptions.AmountException;
+
 public class Car {
   
   private int id;
@@ -36,6 +38,14 @@ public class Car {
     this.fuelLevel = fuelLevel;
   }
 
-  public void refuelVehicle(double amount){}
+  public void refuelVehicle(double amount) throws AmountException{
+    if(amount <1){
+      throw new AmountException("Ensure a minimum of 1.00 units is allocated.");
+    }
+    else{
+      double newFuelLevel = fuelLevel + amount;
+      setFuelLevel(newFuelLevel);
+    }
+  }
   public void fuelConsumptionLevel(double amount){}
 }
